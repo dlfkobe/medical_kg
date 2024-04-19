@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问答界面</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>问答界面</h2>
+    <div>
+        <input type="text" id="question" placeholder="请输入问题" />
+        <button onclick="askQuestion()">提问</button>
+    </div>
+    <div id="answer"></div>
+
+    <script>
+        function askQuestion() {
+            var question = $('#question').val();
+            if (question) {
+                $.ajax({
+                    url: '/ask',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ question: question }),
+                    success: function(response) {
+                        $('#answer').text(response.answer);
+                    },
+                    error: function(error) {
+                        $('#answer').text('发生错误：' + error.responseText);
+                    }
+                });
+            } else {
+                alert('请输入问题');
+            }
+        }
+    </script>
+</body>
+</html>
