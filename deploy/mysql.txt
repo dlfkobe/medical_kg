@@ -1,0 +1,1 @@
+docker run -d --name mysql -v "C:\Users\DLF\Desktop\medical_kg\mysql_data\conf\my.cnf":/etc/mysql/my.cnf -v "C:\Users\DLF\Desktop\medical_kg\mysql_data\data":/var/lib/mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123456  mysql
